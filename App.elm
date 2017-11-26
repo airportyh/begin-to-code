@@ -22,10 +22,8 @@ type Message =
 
 getLessons : Cmd Message
 getLessons =
-  let
-    request = Http.get "./lessons/python/lessons.json" decodeLessons
-  in
-    Http.send GotLessons request
+  let request = Http.get "./lessons/python/lessons.json" decodeLessons
+  in Http.send GotLessons request
 
 decodeLessons =
   Json.list (Json.map2 Lesson
@@ -44,21 +42,20 @@ init location =
   let initModel = {
     currentLocation = location,
     lessons = [],
-    currentLessonContent = Nothing
-    }
-    in (initModel, getLessons)
+    currentLessonContent = Nothing }
+  in (initModel, getLessons)
 
 update : Message -> Model -> (Model, Cmd Message)
 update msg model =
   case msg of
     GotLessons (Ok lessons) ->
       let newModel = { model | lessons = lessons }
-        in (newModel, maybeLoadLessonContents newModel)
+      in (newModel, maybeLoadLessonContents newModel)
     GotLessons (Err _) ->
       (model, Cmd.none)
     UrlChange location ->
       let newModel = { model | currentLocation = location }
-        in (newModel, maybeLoadLessonContents newModel)
+      in (newModel, maybeLoadLessonContents newModel)
     GotLessonContent (Ok content) ->
       ({ model | currentLessonContent = Just content }, Cmd.none)
     GotLessonContent (Err _) ->
