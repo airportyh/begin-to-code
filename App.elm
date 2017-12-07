@@ -1,5 +1,8 @@
+port module App exposing (..)
+
 import Html exposing (Html, input, div, text, ul, li, h1, a, p)
-import Html.Attributes exposing (type_, placeholder, href)
+import Html.Attributes exposing (type_, placeholder, href, property)
+import Json.Encode exposing (string)
 import Http
 import Json.Decode as Json
 import Navigation
@@ -9,16 +12,26 @@ type alias Lesson = {
   path: String
 }
 
+type alias Page = {
+  slide: String,
+  speakerNotes: String
+}
+
 type alias Model = {
   currentLocation: Navigation.Location,
   lessons: List Lesson,
-  currentLessonContent: Maybe String
+  currentLessonContent: Maybe String,
+  currentLessonContentHtml: Maybe String,
+  currentLessonPages: List Page
 }
 
 type Message =
   GotLessons (Result Http.Error (List Lesson)) |
   UrlChange Navigation.Location |
-  GotLessonContent (Result Http.Error String)
+  GotLessonContent (Result Http.Error String) |
+  CompiledHtml (List Page)
+
+port convertMarkdown : String -> Cmd msg
 
 getLessons : Cmd Message
 getLessons =
@@ -42,7 +55,9 @@ init location =
   let initModel = {
     currentLocation = location,
     lessons = [],
-    currentLessonContent = Nothing }
+    currentLessonContent = Nothing,
+    currentLessonContentHtml = Nothing,
+    currentLessonPages = [] }
   in (initModel, getLessons)
 
 update : Message -> Model -> (Model, Cmd Message)
@@ -57,9 +72,11 @@ update msg model =
       let newModel = { model | currentLocation = location }
       in (newModel, maybeLoadLessonContents newModel)
     GotLessonContent (Ok content) ->
-      ({ model | currentLessonContent = Just content }, Cmd.none)
+      ({ model | currentLessonContent = Just content }, convertMarkdown content)
     GotLessonContent (Err _) ->
       (model, Cmd.none)
+    CompiledHtml pages ->
+      ({ model | currentLessonPages = pages }, Cmd.none)
 
 maybeLoadLessonContents : Model -> Cmd Message
 maybeLoadLessonContents model =
@@ -87,10 +104,10 @@ view : Model -> Html Message
 view model = div [] [
   h1 [] [text "All Lessons"],
   ul [] (List.map viewLesson model.lessons),
-  p [] [text (toString (currentLesson model))],
-  case model.currentLessonContent of
+  p [] [text (toString model.currentLessonPages)],
+  case model.currentLessonContentHtml of
     Nothing -> text ""
-    Just content -> p [] [text content]
+    Just html -> div [ property "innerHTML" (string html) ] []
   ]
 
 viewLesson : Lesson -> Html Message
@@ -99,5 +116,7 @@ viewLesson lesson =
     a [href ("#" ++ lesson.path)] [text lesson.title]
   ]
 
+port compiledHtml : ((List Page) -> msg) -> Sub msg
+
 subscriptions : Model -> Sub Message
-subscriptions model = Sub.none
+subscriptions model = compiledHtml CompiledHtml

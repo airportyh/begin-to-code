@@ -105,14 +105,6 @@ $(function() {
     md = preprocess(md);
     var html = markdownit({
       html: true
-      // highlight: function (str, lang) {
-      //   if (lang && hljs.getLanguage(lang)) {
-      //     try {
-      //       return hljs.highlight(lang, str).value;
-      //     } catch (__) {}
-      //   }
-      //   return ''; // use external default escaping
-      // }
     }).render(md);
     html = postprocess(html);
     return html;
@@ -128,9 +120,7 @@ $(function() {
   }
 
   function splitSlides(html) {
-    // console.log('html', html);
     var parts = html.split(/\<hr\>/g);
-    // console.log('parts', parts);
     var pages = [];
     for (var i = 0; i < parts.length; i+=2) {
       pages.push({

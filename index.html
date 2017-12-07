@@ -3,28 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="tooltipster.css">
-    <link rel="stylesheet" href="highlight.js.css">
-    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="lesson-list"></div>
-    <div id="view">
-      <div id="slide-contents"></div>
-    </div>
-    <div id="speaker-notes"></div>
-    <div id="toolbar">
-      <button id="previous-button">Previous</button>
-      <span id="page-number"></span>
-      of
-      <span id="total-page-number"></span>
-      <button id="next-button">Next</button>
-    </div>
-    <script src="lodash.js"></script>
-    <script src="highlight.js"></script>
     <script src="markdown-it.js"></script>
-    <script src="jquery.js"></script>
-    <script src="tooltipster.js"></script>
-    <script src="app.js"></script>
+    <script src="ElmApp.js"></script>
+    <script>
+    var app = Elm.App.fullscreen();
+
+    app.ports.convertMarkdown.subscribe(function(markdown) {
+      var pages = splitSlides(markdownRender(markdown));
+      console.log('pages', pages);
+      app.ports.compiledHtml.send(pages);
+    });
+
+    function splitSlides(html) {
+      // console.log('html', html);
+      var parts = html.split(/\<hr\>/g);
+      // console.log('parts', parts);
+      var pages = [];
+      for (var i = 0; i < parts.length; i+=2) {
+        pages.push({
+          slide: parts[i],
+          speakerNotes: parts[i + 1]
+        });
+      }
+      return pages;
+    }
+
+    function markdownRender(md) {
+      md = preprocess(md);
+      var html = markdownit({
+        html: true
+      }).render(md);
+      html = postprocess(html);
+      return html;
+    }
+
+    function preprocess(md) {
+      return md;
+    }
+
+    function postprocess(md) {
+      md = md.replace(/\[\[((?:.|[\n])*?)\]\]\[\[(.*?)\]\]/g, '<span title="$2" class="tooltip">$1</span>');
+      return md;
+    }
+    </script>
   </body>
 </html>
