@@ -705,8 +705,9 @@ while i < len(numbers):
 Oops! Time for a challenge again!!!
 
 Change this program to total the *square* of each number in the list.
-
-You should get 91 as the answer.
+**Hints** 
+-You should use the Accumulator plus Loop-and-Filter
+-You should get 91 as the answer.
 ******************************************
 ## Problem:
 
