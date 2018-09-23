@@ -13,7 +13,7 @@ generate new elements, and event delegation.
 ## Text Inputs
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" name="your-name" type="text">
 <button id="submit-button">Submit</button>
 ```
@@ -24,7 +24,7 @@ First, let's learn how to work with a text input.
 ## Text Inputs
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 [[<input id="name-input" type="text">]][[Text input]]
 <button id="submit-button">Submit</button>
 ```
@@ -39,7 +39,7 @@ checkbox or radio button.
 ## Text Inputs: Initial Value
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" [[value="Beppo"]][[Initial value]]>
 <button id="submit-button">Submit</button>
 ```
@@ -83,7 +83,7 @@ current value.
 ## Text Inputs: Get Current Value
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" value="Beppo">
 <button id="submit-button">Submit</button>
 ```
@@ -101,7 +101,7 @@ for the solution.
 ## Solution
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" value="Beppo">
 <button id="submit-button">Submit</button>
 ```
@@ -119,7 +119,7 @@ This is the solution.
 ## Solution
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" value="Beppo">
 <button id="submit-button">Submit</button>
 ```
@@ -138,7 +138,7 @@ on the submit button.
 ## Solution
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" value="Beppo">
 <button id="submit-button">Submit</button>
 ```
@@ -157,7 +157,7 @@ of the text input and save it into the `name` variable.
 ## Solution
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" value="Beppo">
 <button id="submit-button">Submit</button>
 ```
@@ -176,7 +176,7 @@ user.
 ## Solution
 
 ```html
-<label>What's your name?<label>
+<label>What's your name?</label>
 <input id="name-input" type="text" value="Beppo">
 <button id="submit-button">Submit</button>
 ```
@@ -209,7 +209,7 @@ use an alert popup, and instead displays the greeting on the page.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -228,7 +228,7 @@ We will simulate having 2 different pages with in this one web page.
 
 ```html
 [[<div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>]][[Ask Name Page]]
@@ -248,7 +248,7 @@ element an ID of `ask-name-page`.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -266,7 +266,7 @@ as a "Play Again" button.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -285,7 +285,7 @@ to update the text within this element.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -321,7 +321,7 @@ the `show` method.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -343,7 +343,7 @@ page* initially, so that the *Ask Name Page* is the only page that is seen.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -369,7 +369,7 @@ Let's put back the event handler code from version 1.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   [[<button id="submit-button">Submit</button>]][[Button to listen for clicks on]]
 </div>
@@ -395,7 +395,7 @@ This code listens for clicks on the `#submit-button` element.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -421,7 +421,7 @@ Now, instead of calling the `alert` function to generate an alert popup,
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -447,7 +447,7 @@ we update the text within the `#name-display` element.
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
@@ -478,7 +478,7 @@ Now, let's simulate flipping the page by:
 
 ```html
 <div id="ask-name-page">
-  <label>What's your name?<label>
+  <label>What's your name?</label>
   <input id="name-input" type="text" value="Beppo">
   <button id="submit-button">Submit</button>
 </div>
