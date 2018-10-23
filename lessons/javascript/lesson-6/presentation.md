@@ -866,7 +866,7 @@ on a DOM element or sets a property of a
 DOM element to the specified value.
 
 It takes the property
-name as the first argument. If the the second argument
+name as the first argument. If the second argument
  `propertyValue` is not provided, it is a get, otherwise
  it is a set, and it sets value of the property to `propertyValue`.
 ***************************************************************
